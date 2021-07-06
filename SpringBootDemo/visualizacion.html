@@ -1,0 +1,43 @@
+  
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>formulario</title>
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+		var content = "";
+		$.ajax({
+			url: "http://localhost:8080/CategoryRestService/FindAll"
+		}).then(function(data) {
+			$.each(data, function(i, obj){
+				var item =
+	    				"<td>" + obj.name + "</td>" +
+	    				"<td>" + obj.description + "</td>";
+	    		content = content.concat(item);
+			});
+			$('.table-of-form').append(content);
+		});
+	});
+  </script>
+</head>
+<body>
+
+<div class="text-center">
+  <h1>Tabla de Formulario</h1>
+</div>
+
+<div class="container">
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">id</th> 
+        <th scope="col">descripcion</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+</body>
+</html>
